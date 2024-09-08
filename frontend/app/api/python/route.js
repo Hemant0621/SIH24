@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req) {
     const { inputData } = await req.json();
-    
+    console.log(inputData)
     return new Promise((resolve, reject) => {
         const pythonProcess = spawn('python3', ['./vivek.py', JSON.stringify(inputData)]);
 
