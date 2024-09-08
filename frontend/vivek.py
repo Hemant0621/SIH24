@@ -9,9 +9,7 @@ input = sys.argv[1]
 
 # model code
 import google.generativeai as genai
-import os
-# import key
-import PIL.Image
+
 
 api_key= "AIzaSyBZVBw7t3ZQlbS_VtHOcWHoNX8NDatuMf0"
 
@@ -29,6 +27,6 @@ with response that i am not smart enough to answer that, you can ask me questioi
 
 response=model.generate_content(f" {input} just anwer the question inputed by the user and on point, {base_info}")
 
-output = response.text 
+output = "hello"
 print(output)
 sys.stdout.flush()
