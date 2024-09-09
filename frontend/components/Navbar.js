@@ -6,11 +6,11 @@ const Navbar = () => {
             <div className=" mx-auto flex justify-between items-center">
                 {/* Logo */}
                 <div className="flex items-center ml-20 md:ml-2">
-                    <img
+                    {/* <img
                         src="/path-to-your-logo.png" // Replace with your logo path
                         alt="LearnIt"
                         className="h-8 mr-2"
-                    />
+                    /> */}
                     <span className="text-xl font-bold">LearnIt</span>
                 </div>
 
@@ -131,11 +131,11 @@ const Navbar = () => {
                             <p className="text-gray-700 font-semibold">Freelancer</p>
                             <p className="text-gray-500">Employer</p>
                         </div>
-                        <img
+                        {/* <img
                             src="/path-to-avatar.png" // Replace with your avatar image path
                             alt="Avatar"
                             className="h-8 w-8 rounded-full ml-2"
-                        />
+                        /> */}
                     </div>
                 </div>
             </div>

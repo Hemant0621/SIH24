@@ -10,6 +10,4 @@ export default function Home() {
             <Dashboard user={"Freelancer"}/>
         </>
     )
-
-
 }

@@ -103,12 +103,12 @@ Routes.post('/auth/signin', async (req, res) => {
 
 const JobBody = zod.object({
     title:zod.string(),
-    price : zod.number(),
+    price : zod.string(),
     description : zod.string()
 
 })
 
-Routes.post('/post_job', authMiddleware, async (req, res) => {
+Routes.post('/post_job', async (req, res) => {
     try {
         const body = req.body;
         console.log(body)
@@ -121,18 +121,37 @@ Routes.post('/post_job', authMiddleware, async (req, res) => {
             })
         }
 
-        const Job = await Job.create({
+        const Job_list = await Job.create({
             title: body.title,
             price: body.price,
             description: body.description
         })
 
-        return res.send({Job})
+        return res.send({Job_list})
     } catch (e) {
         return res.send({
             message: e
         })
     }
 })
+
+Routes.get('/jobs', async (req, res) => {
+    try {
+        const jobs = await Job.find(); 
+
+        if (!jobs.length) {
+            return res.status(404).send({
+                message: "No jobs found"
+            });
+        }
+
+        return res.send(jobs); 
+    } catch (e) {
+        return res.status(500).send({
+            message: e.message || "Internal Server Error"
+        });
+    }
+});
+
 
 module.exports = Routes
