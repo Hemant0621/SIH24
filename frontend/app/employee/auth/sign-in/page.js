@@ -20,11 +20,15 @@ import { signInSchema } from '@/schemas/signInSchema';
 import { useState } from 'react';
 import { Tag } from 'lucide-react';
 import TagModel from '@/components/ui/TagModel';
+import axios from 'axios';
+import Backend_Url from '@/config';
 
 function SignInForm() {
   const router = useRouter();
   const [identifierFocus, setIdentifierFocus] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
+  const [password,setpassword] = useState('')
+  const [email,setemail] = useState('')
 
   const form = useForm({
     resolver: zodResolver(signInSchema),
@@ -36,7 +40,7 @@ function SignInForm() {
 
   const { toast } = useToast();
   const onSubmit = async (data) => {
-    const result = await signIn('credentials', {
+    const result = await axios.post(`${Backend_Url}employee/auth/signin`, {
       redirect: false,
       identifier: data.identifier,
       password: data.password,
