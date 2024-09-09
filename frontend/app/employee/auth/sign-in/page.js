@@ -21,8 +21,6 @@ import { useState } from 'react';
 import { Tag } from 'lucide-react';
 import TagModel from '@/components/ui/TagModel';
 
-
-
 function SignInForm() {
   const router = useRouter();
   const [identifierFocus, setIdentifierFocus] = useState(false);
@@ -67,10 +65,10 @@ function SignInForm() {
 
   return (
     <div className="flex items-center min-h-screen bg-black h-screen w-screen justify-around gap-5">
-      <div className="relative w-full max-w-md p-8 space-y-8 bg-white/10 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 ml-12">
+      <div className="relative w-full max-w-md p-8 space-y-8 bg-white/10 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 ml-12" style={{ borderRadius: '16px', background: 'rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(20px)', boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)', border: '1px solid rgba(255, 255, 255, 0.18)' }}>
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">
-            Welcome Back to <span className="text-teal-400">Freelance Hub</span>
+            Welcome Back to <span className="text-teal-400">LearnIT</span>
           </h1>
           <p className="text-gray-400 mb-6">
             Welcome back! Sign in to manage your job listings.
@@ -90,7 +88,7 @@ function SignInForm() {
                     )}
                     <Input
                       {...field}
-                      className="w-full pl-10 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent hover:border-teal-500 hover:shadow-lg"
+                      className="w-full pl-10 px-4 py-2 bg-gray-800/60 border border-gray-700 rounded-lg text-white placeholder-gray-400 shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent hover:border-teal-500 hover:shadow-lg"
                       style={{ borderRadius: '8px' }}
                       onFocus={() => setIdentifierFocus(true)}
                       onBlur={() => setIdentifierFocus(false)}
@@ -113,7 +111,7 @@ function SignInForm() {
                     <Input
                       type="password"
                       {...field}
-                      className="w-full pl-10 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent hover:border-teal-500 hover:shadow-lg"
+                      className="w-full pl-10 px-4 py-2 bg-gray-800/60 border border-gray-700 rounded-lg text-white placeholder-gray-400 shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent hover:border-teal-500 hover:shadow-lg"
                       style={{ borderRadius: '8px' }}
                       onFocus={() => setPasswordFocus(true)}
                       onBlur={() => setPasswordFocus(false)}

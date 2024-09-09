@@ -82,7 +82,7 @@ const Page = () => {
       <div className="relative w-full max-w-md p-8 space-y-8 bg-white/10 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 mx-auto ml-12">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">
-            Join <span className="text-teal-400">Freelance Hub</span>
+            Join <span className="text-teal-400">LearnIT</span>
           </h1>
           <p className="text-gray-400 mb-6">Connect with top talent! Sign up to post your jobs.</p>
         </div>
