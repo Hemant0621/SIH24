@@ -105,7 +105,7 @@ const FreelancerLandingPage = () => {
       <li><a href="#" className="text-primary hover:text-primary-dark transition-colors">Find Work</a></li>
       <li><a href="#" className="text-primary hover:text-primary-dark transition-colors">Find Freelancers</a></li>
       <li><a href="/employee/auth/sign-up" className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors">Register as Employee</a></li>
-      <li><a href="/freelancer/auth/sign-up" className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors">Start as Freelancer</a></li>
+      <li><a href="/Freelancer/auth/sign-up" className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors">Start as Freelancer</a></li>
     </ul>
   </nav>
 </header>

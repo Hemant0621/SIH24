@@ -157,7 +157,7 @@ const Page = () => {
               )}
             />
             <Button 
-              type="submit" 
+              type="button" 
               disabled={isSubmitting} 
               className="w-full py-3 bg-gradient-to-r from-teal-400 to-blue-500 text-white font-semibold rounded-lg shadow-xl transform transition-all duration-500 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-teal-400"
               onClick = {async ()=>{
@@ -167,6 +167,10 @@ const Page = () => {
                   email,
                   password
                 })
+                if(response.data.token){
+                  localStorage.setItem("token",`Bearer ${response.data.token}`)
+                  location.href = "/employee/Dashboard"
+                }
                 console.log(response.data)
               }}
             >

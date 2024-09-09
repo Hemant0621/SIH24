@@ -128,8 +128,15 @@ const Navbar = () => {
                 <div className="flex space-x-4 items-center">
                     <div className="flex items-center"> 
                         <div className="text-sm">
-                            <p className="text-gray-700 font-semibold">Freelancer</p>
-                            <p className="text-gray-500">Employer</p>
+                            <p className="text-gray-700 font-semibold cursor-pointer" 
+                            onClick={()=>{
+                                const confirm = window.confirm("Do you want to Logout")
+                                if(confirm){
+                                    localStorage.setItem("token","")
+                                    location.href = "/employee/auth/sign-in"
+                                }
+                            }}
+                            >Logout</p>
                         </div>
                         {/* <img
                             src="/path-to-avatar.png" // Replace with your avatar image path

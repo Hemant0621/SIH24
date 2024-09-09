@@ -27,8 +27,8 @@ function SignInForm() {
   const router = useRouter();
   const [identifierFocus, setIdentifierFocus] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
-  const [password,setpassword] = useState('')
-  const [email,setemail] = useState('')
+  const [password, setpassword] = useState('')
+  const [email, setemail] = useState('')
 
   const form = useForm({
     resolver: zodResolver(signInSchema),
@@ -39,33 +39,33 @@ function SignInForm() {
   });
 
   const { toast } = useToast();
-  const onSubmit = async (data) => {
-    const result = await axios.post(`${Backend_Url}employee/auth/signin`, {
-      redirect: false,
-      identifier: data.identifier,
-      password: data.password,
-    });
+  // const onSubmit = async (data) => {
+  //   const result = await axios.post(`${Backend_Url}employee/auth/signin`, {
+  //     email: data.identifier,
+  //     password: data.password,
+  //   });
+  //   console.log(result.data)
 
-    if (result?.error) {
-      if (result.error === 'CredentialsSignin') {
-        toast({
-          title: 'Login Failed',
-          description: 'Incorrect email or password',
-          variant: 'destructive',
-        });
-      } else {
-        toast({
-          title: 'Error',
-          description: result.error,
-          variant: 'destructive',
-        });
-      }
-    }
+  //   if (result?.error) {
+  //     if (result.error === 'CredentialsSignin') {
+  //       toast({
+  //         title: 'Login Failed',
+  //         description: 'Incorrect email or password',
+  //         variant: 'destructive',
+  //       });
+  //     } else {
+  //       toast({
+  //         title: 'Error',
+  //         description: result.error,
+  //         variant: 'destructive',
+  //       });
+  //     }
+  // }
 
-    if (result?.url) {
-      router.replace('/dashboard');
-    }
-  };
+  // if (result?.url) {
+  //   router.replace('/dashboard');
+  // }
+  // };
 
   return (
     <div className="flex items-center min-h-screen bg-black h-screen w-screen justify-around gap-5">
@@ -79,7 +79,7 @@ function SignInForm() {
           </p>
         </div>
         <Form {...form}>
-          <form onSubmit={onSubmit} className="space-y-6">
+          <form className="space-y-6">
             <FormField
               name="identifier"
               control={form.control}
@@ -127,8 +127,21 @@ function SignInForm() {
             />
             <Button
               className="w-full py-3 bg-gradient-to-r from-teal-400 to-blue-500 text-white font-semibold shadow-xl transform transition-all duration-500 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-teal-400"
-              type="submit"
+              type="button"
               style={{ borderRadius: '8px' }}
+              onClick={async () => {
+                console.log(username, email)
+                const response = await axios.post(`${Backend_Url}employee/auth/signup`, {
+                  username,
+                  email,
+                  password
+                })
+                if (response.data.token) {
+                  localStorage.setItem("token", `Bearer ${response.data.token}`)
+                  location.href = "/employee/Dashboard"
+                }
+                console.log(response.data)
+              }}
             >
               Sign In
             </Button>
