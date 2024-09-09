@@ -15,6 +15,8 @@ const { FormControl, FormField, FormItem, FormLabel, FormMessage } = require("@/
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import TagModel from "@/components/ui/TagModel"
+import Backend_Url from "@/config"
+
 const Page = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
@@ -24,8 +26,6 @@ const Page = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const debounced = useDebounceCallback(setUsername, 300)
-  const { toast } = useToast()
-  const router = useRouter()
 
   const form = useForm({
     resolver: zodResolver(signUpSchema),
@@ -36,58 +36,35 @@ const Page = () => {
     }
   })
 
-  useEffect(() => {
-    const checkUsernameUnique = async () => {
-      if (username) {
-        setIsCheckingUsername(true)
-        setUsernameMessage('')
-        try {
-          const response = await axios.get(`/api/check-username-unique?username=${username}`)
-          const message = response.data.message
-          setUsernameMessage(message)
-        } catch (error) {
-          setUsernameMessage("Error checking username")
-        } finally {
-          setIsCheckingUsername(false)
-        }
-      }
-    }
-    checkUsernameUnique()
-  }, [username])
-
-  const onSubmit = async (data) => {
-    setIsSubmitting(true)
-    try {
-      const response = await axios.post('/api/sign-up', data)
-      toast({
-        title: 'Success',
-        description: response.data.message
-      })
-      router.replace(`/verify/${data.username}`)
-    } catch (error) {
-      const errorMessage = error.response?.data.message ?? "Signup failed"
-      toast({
-        title: "Signup Failed",
-        description: errorMessage,
-        variant: "destructive"
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  // const onSubmit = async (data) => {
+  //   setIsSubmitting(true)
+  //   try {
+  //     const response = await axios.post(`${Backend_Url}employee/auth/signup`, data)
+  //     console.log(response)
+  //   } catch (error) {
+  //     const errorMessage = error.response?.data.message ?? "Signup failed"
+  //     toast({
+  //       title: "Signup Failed",
+  //       description: errorMessage,
+  //       variant: "destructive"
+  //     })
+  //   } finally {
+  //     setIsSubmitting(false)
+  //   }
+  // }
 
   return (
     <div className="flex items-center min-h-screen bg-black h-screen w-screen justify-around gap-5">
       <div className="relative w-full max-w-md p-8 space-y-8 bg-white/10 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 mx-auto ml-12">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">
-            Join <span className="text-teal-400">LearnIT</span>
+            Join <span className="text-teal-400">Freelance Hub</span>
           </h1>
-          <p className="text-gray-400 mb-6">Ready to freelance? Sign up to start your journey.</p>
+          <p className="text-gray-400 mb-6">Connect with top talent! Sign up to post your jobs.</p>
         </div>
 
         <FormProvider {...form}>
-          <form onSubmit={onSubmit} className="space-y-6">
+          <form className="space-y-6">
             <FormField
               name="username"
               control={form.control}
@@ -183,6 +160,15 @@ const Page = () => {
               type="submit" 
               disabled={isSubmitting} 
               className="w-full py-3 bg-gradient-to-r from-teal-400 to-blue-500 text-white font-semibold rounded-lg shadow-xl transform transition-all duration-500 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-teal-400"
+              onClick = {async ()=>{
+                console.log(username,email)
+                const response = await axios.post(`${Backend_Url}employee/auth/signup`, {
+                  username,
+                  email,
+                  password
+                })
+                console.log(response.data)
+              }}
             >
               {isSubmitting ? (
                 <>
